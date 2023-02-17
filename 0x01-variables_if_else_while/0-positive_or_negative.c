@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdio.h>
 /**
- * main - A program to print whether n is positive or negative
+ * main - A program to print whether n is positive or negative.
  * Return: 0
  */
 int main(void)
@@ -20,5 +20,5 @@ int main(void)
 	} else
 	{
 		printf("The number is zero\n");
-	} return (0)
+	} return (0);
 }
