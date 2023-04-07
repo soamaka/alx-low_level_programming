@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include<fcnt1.h>
+#include<fcntl.h>
 /**
  * create_file - Creates a file.
  * @filename: A pointer to the name of the file to create.
@@ -15,9 +15,22 @@
  */
 int create_file(const char *filename, char *text_content)
 {
+	int fd, w, len = 0;
+
 	if (filename == NULL)
 	{
 		return (-1);
 	}
-	mode_t file_permissions = S_IRUSR | S_IWUSR;
-	int fd 
+	if (text_content != NULL)
+	{
+		for (len = 0; text_content[len];)
+			len++;
+	}
+	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	w = write(fd, text_content, len);
+
+	if (fd == -1 || w == -1)
+		return (-1);
+	close(fd);
+	return (1);
+}
